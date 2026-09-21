@@ -1,5 +1,5 @@
 import { getJobs } from './db/jobs.js';
-
+import { getCompany } from './db/companies.js';
 export const resolvers = {
     Query: {
         greeting: () => 'Hello world' ,
@@ -10,7 +10,8 @@ export const resolvers = {
         } // this is the same as () => getJobs()
     },
     Job : {
-        date: (job) => toIsoDate(job.createdAt)
+        date: (job) => toIsoDate(job.createdAt),
+        company: async (job) =>  getCompany(job.companyId)
     }
 };
 
